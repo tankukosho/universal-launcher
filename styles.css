@@ -5,3 +5,29 @@
 @media(max-width:1250px){.game-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.cover-row{grid-template-columns:repeat(4,minmax(0,1fr))}.main{padding:0 26px 22px}}
 @media(max-width:900px){.sidebar{width:205px;flex-basis:205px}.main{width:calc(100% - 205px);padding:0 20px 20px}.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cover-row{grid-template-columns:repeat(3,minmax(0,1fr))}.cover-row .mini-card:nth-child(4){display:none}.import-cards{grid-template-columns:1fr}.panel p{min-height:0}.discover-results{grid-template-columns:repeat(2,minmax(0,1fr))}.top-search{width:190px}}
 @media(max-width:650px){.sidebar{position:fixed;z-index:30;left:-245px;top:0;height:100dvh;width:230px;transition:left .22s;box-shadow:15px 0 50px #0006}.sidebar.open{left:0}.main{width:100%;padding:0 15px 18px}.topbar{height:64px}.mobile-menu{display:grid;background:#17121f;color:#d9c7ec;border:1px solid #32243e}.crumb{font-size:11px;gap:7px}.top-search{display:none}.top-actions{gap:0}.view{padding-top:23px}.welcome-row,.page-heading{align-items:flex-start;flex-direction:column}.welcome-row h1,.page-heading h1{font-size:28px}.welcome-row .button,.page-heading>.button{align-self:stretch}.hero{min-height:300px;background-position:58% center}.hero-content{padding:25px 20px}.hero h2{font-size:32px;max-width:290px}.hero p{font-size:12px}.hero-actions .button{font-size:11px;padding:10px}.section-heading{margin-top:25px}.section-heading h2{font-size:19px}.cover-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cover-row .mini-card:nth-child(3),.cover-row .mini-card:nth-child(4){display:none}.cover-art{height:155px}.mini-stats{gap:7px}.stat-card{padding:12px}.stat-card strong{font-size:21px}.stat-card span{font-size:9px}.library-tools{gap:8px}.library-search{flex-basis:100%;max-width:none}.filters{flex:1;justify-content:space-around}.filter{flex:1;padding:8px 7px}.library-tools select{margin-left:0;flex:1}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 12px}.game-card .cover-art{aspect-ratio:3/4.2}.game-info strong{font-size:12px}.result-line{margin-top:16px}.discover-panel{flex-direction:column}.discover-results{grid-template-columns:1fr}.discover-result{padding:10px}.setting{padding:15px;gap:10px}.setting p{max-width:245px}.modal-backdrop{padding:8px}.game-modal,.add-modal{max-height:calc(100dvh - 16px);border-radius:15px}.modal-art{height:155px}.modal-body{padding:0 16px 19px}.modal-title-row h2{font-size:23px}.art-buttons .button{font-size:10px;padding:9px}.add-modal{padding:22px 17px}.add-modal h2{font-size:24px}.main footer{line-height:1.6}.page-heading .muted{font-size:12px}}
+/* Universal Launcher: swipeable recent games */
+@media (max-width: 650px) {
+  .cover-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 2px 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .cover-row .mini-card {
+    flex: 0 0 72%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .cover-row .mini-card:nth-child(3),
+  .cover-row .mini-card:nth-child(4) {
+    display: block;
+  }
+
+  .cover-row .cover-art {
+    height: 190px;
+  }
+}

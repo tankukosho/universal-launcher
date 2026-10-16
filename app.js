@@ -1,6 +1,6 @@
 const $ = (s, root=document) => root.querySelector(s);
 const $$ = (s, root=document) => [...root.querySelectorAll(s)];
-const STORE_KEY = "gaming-launcher-prototype-v1";
+const STORE_KEY = "Universal Launcher";
 const defaultGames = [
   {id:"steam-1091500",name:"Cyberpunk 2077",platform:"PC",source:"Steam",url:"https://store.steampowered.com/app/1091500/",appId:1091500,genre:"Action RPG",description:"Explore a futuristic open world in Night City.",cover:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg",banner:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_hero.jpg",recent:6,favourite:true,added:1,automatic:true},
   {id:"steam-1245620",name:"Elden Ring",platform:"PC",source:"Steam",url:"https://store.steampowered.com/app/1245620/",appId:1245620,genre:"Action RPG",description:"Explore a vast fantasy world filled with formidable foes.",cover:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg",banner:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_hero.jpg",recent:5,favourite:false,added:2,automatic:true},

@@ -1,6 +1,6 @@
 {
-  "name": "Gaming Launcher Prototype",
-  "short_name": "Game Hub",
+  "name": "Universal Launcher",
+  "short_name": "UL",
   "description": "A cross-platform gaming launcher prototype.",
   "start_url": "./index.html",
   "scope": "./",

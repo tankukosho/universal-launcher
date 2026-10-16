@@ -31,3 +31,328 @@
     height: 190px;
   }
 }
+/* PREMIUM CONSOLE REDESIGN — v1 */
+
+/* Richer background and refined palette */
+:root {
+  --bg: #09070f;
+  --panel: #13101c;
+  --panel2: #1c1629;
+  --line: #30233f;
+  --text: #f8f4ff;
+  --muted: #a99bbd;
+  --purple: #c09aff;
+  --purple2: #8752e8;
+  --green: #80e4bd;
+  --radius: 18px;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 75% 0%, #28153e55, transparent 38%),
+    var(--bg);
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: #8752e899;
+  color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+  background: linear-gradient(180deg, #120d1c, #0c0a12);
+  border-right-color: #30213f;
+}
+
+.brand-mark {
+  box-shadow: 0 0 28px #a46aff35;
+}
+
+.nav-item {
+  transition: background .2s, color .2s, transform .2s;
+}
+
+.nav-item.active {
+  background: linear-gradient(100deg, #492768, #241832);
+  box-shadow: inset 3px 0 #c09aff, 0 5px 20px #0002;
+}
+
+.nav-item:hover {
+  transform: translateX(2px);
+}
+
+/* Top navigation */
+.topbar {
+  border-bottom-color: #ffffff10;
+}
+
+.search {
+  background: #15101e;
+  border-color: #382847;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.search:focus-within {
+  border-color: #a879e7;
+  box-shadow: 0 0 0 3px #a879e71c;
+}
+
+.profile {
+  box-shadow: 0 0 18px #a46aff20;
+}
+
+/* Headings */
+.welcome-row h1,
+.page-heading h1 {
+  line-height: 1.12;
+}
+
+.welcome-row h1 em {
+  background: linear-gradient(100deg, #e1c9ff, #a875ff);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.eyebrow {
+  color: #c09aff;
+}
+
+/* Featured game */
+.hero {
+  border-color: #62427b;
+  border-radius: 22px;
+  box-shadow: 0 18px 55px #0003, 0 0 35px #8d50d512;
+  transition: border-color .25s, box-shadow .25s;
+}
+
+.hero:hover {
+  border-color: #a77bda;
+  box-shadow: 0 20px 60px #0004, 0 0 35px #8d50d522;
+}
+
+.hero-content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.pill {
+  backdrop-filter: blur(10px);
+  border-color: #c09aff70;
+}
+
+/* Buttons */
+.button {
+  border-radius: 12px;
+  transition: transform .18s, filter .18s, background .18s;
+}
+
+.primary {
+  background: linear-gradient(135deg, #c09aff, #8446df);
+  box-shadow: 0 7px 25px #8446df35;
+}
+
+.primary:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.secondary,
+.ghost {
+  border-color: #ffffff20;
+  backdrop-filter: blur(8px);
+}
+
+button:focus-visible {
+  outline: 2px solid #d3b5ff;
+  outline-offset: 3px;
+}
+
+/* Game cards */
+.cover-art {
+  border-color: #ffffff16;
+  box-shadow: 0 8px 22px #0002;
+  transition: transform .22s, border-color .22s, box-shadow .22s;
+}
+
+.mini-card:hover .cover-art,
+.game-card:hover .cover-art {
+  transform: translateY(-4px);
+  border-color: #bb91f5;
+  box-shadow: 0 12px 28px #0004, 0 0 18px #9e67e51a;
+}
+
+.cover-title {
+  text-shadow: 0 2px 12px #000, 0 1px 3px #000;
+}
+
+.cover-caption {
+  color: #a99bbd;
+}
+
+.section-heading {
+  gap: 12px;
+}
+
+.section-heading h2 {
+  letter-spacing: -.025em;
+}
+
+.text-button {
+  transition: color .2s;
+}
+
+.text-button:hover {
+  color: #eadbff;
+}
+
+/* Collection stats */
+.stat-card {
+  background: linear-gradient(145deg, #191323, #100d17);
+  border-color: #332440;
+  border-radius: 16px;
+  transition: transform .2s, border-color .2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: #79539c;
+}
+
+.stat-card strong {
+  color: #e6d4ff;
+}
+
+/* Library and settings panels */
+.panel,
+.settings-list,
+.discover-result {
+  border-color: #342540;
+  box-shadow: 0 8px 25px #00012;
+}
+
+.panel,
+.game-modal,
+.add-modal {
+  background-color: #130f1b;
+}
+
+.filter.active {
+  background: #39244f;
+  color: #eadbff;
+}
+
+.library-tools select {
+  border-color: #382847;
+}
+
+/* Details and dialogs */
+.game-modal,
+.add-modal {
+  border-color: #63447b;
+  box-shadow: 0 30px 100px #0009, 0 0 45px #8752e812;
+}
+
+.heart-button.on {
+  box-shadow: 0 0 18px #ff9fb933;
+}
+
+.launch-option {
+  transition: background .2s, border-color .2s;
+}
+
+.launch-option:hover {
+  border-color: #9367c1;
+}
+
+/* Subtle motion */
+@keyframes premiumRise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view:not(.hidden) {
+  animation: premiumRise .24s ease-out;
+}
+
+/* Phone refinements */
+@media (max-width: 650px) {
+  .main {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .topbar {
+    background: #0c0913eF;
+    backdrop-filter: blur(16px);
+  }
+
+  .hero {
+    border-radius: 18px;
+    min-height: 290px;
+  }
+
+  .hero-content {
+    padding: 27px 19px;
+  }
+
+  .hero h2 {
+    line-height: 1.08;
+  }
+
+  /* Preserve the existing swipeable Recently Played row */
+  .cover-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 2px 2px 14px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cover-row .mini-card {
+    flex: 0 0 72%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  .cover-row .mini-card:nth-child(3),
+  .cover-row .mini-card:nth-child(4) {
+    display: block;
+  }
+
+  .cover-row .cover-art {
+    height: 190px;
+  }
+
+  .stat-card {
+    border-radius: 13px;
+  }
+
+  .game-grid {
+    column-gap: 12px;
+    row-gap: 20px;
+  }
+
+  .button {
+    min-height: 42px;
+  }
+}
+
+/* Respect reduced-motion accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

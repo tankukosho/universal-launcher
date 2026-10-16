@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0910">
+  <meta name="description" content="A cross-platform gaming launcher prototype.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gaming Launcher — Prototype</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">✦</div><div><strong>GAME HUB</strong><small>YOUR COLLECTION</small></div></div>
+      <nav>
+        <button class="nav-item active" data-view="home"><span>⌂</span> Home</button>
+        <button class="nav-item" data-view="library"><span>▦</span> My Library</button>
+        <button class="nav-item" data-view="discover"><span>⌕</span> Discover</button>
+        <button class="nav-item" data-view="downloads"><span>⇩</span> Downloads</button>
+        <button class="nav-item" data-view="favourites"><span>♡</span> Favourites</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sync-status"><i></i><span>Local collection</span></div>
+        <button class="nav-item" data-view="settings"><span>⚙</span> Settings</button>
+        <p class="sidebar-note">Prototype v0.1<br>Name to be decided</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="crumb"><span id="crumbParent">Workspace</span><b>/</b><strong id="crumbCurrent">Home</strong></div>
+        <div class="top-actions">
+          <label class="search top-search"><span>⌕</span><input id="globalSearch" placeholder="Search games..." autocomplete="off"></label>
+          <button class="profile" title="Local prototype profile">P</button>
+        </div>
+      </header>
+
+      <section id="homeView" class="view">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR PERSONAL GAME SPACE</p><h1>Ready for your <em>next adventure?</em></h1><p class="muted">Your games, organised in one place.</p></div><button class="button secondary" id="homeAdd">＋ Add a game</button></div>
+        <section class="hero" id="hero">
+          <div class="hero-shade"></div>
+          <div class="hero-content">
+            <span class="pill" id="heroSource">FEATURED GAME</span>
+            <h2 id="heroTitle">Cyberpunk 2077</h2>
+            <p id="heroDesc">Explore a futuristic open world in Night City.</p>
+            <div class="hero-actions"><button class="button primary" id="heroDetails">View game details ↗</button><button class="button ghost" id="heroLibrary">Open library</button></div>
+          </div>
+          <div class="hero-dots"><span></span><span></span><span></span></div>
+        </section>
+        <div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Recently played</h2></div><button class="text-button" data-goto="library">View library ↗</button></div>
+        <div class="cover-row" id="recentRow"></div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR COLLECTION</p><h2>All games</h2></div><button class="text-button" data-goto="library">Browse all ↗</button></div>
+        <div class="mini-stats" id="homeStats"></div>
+      </section>
+
+      <section id="libraryView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">EVERYTHING IN ONE PLACE</p><h1>My Library</h1><p class="muted">Find a game, check its details, then choose where to launch it.</p></div><button class="button primary" id="libraryAdd">＋ Add a game</button></div>
+        <div class="library-tools">
+          <label class="search library-search"><span>⌕</span><input id="librarySearch" placeholder="Search your collection..."></label>
+          <div class="filters" id="platformFilters"><button class="filter active" data-filter="All">All games</button><button class="filter" data-filter="PC">PC</button><button class="filter" data-filter="Android">Android</button></div>
+          <select id="sortSelect" aria-label="Sort games"><option value="name">Name A–Z</option><option value="recent">Recently added</option><option value="source">Platform</option></select>
+        </div>
+        <div class="result-line"><span id="resultCount">0 games</span><span>Balanced cover view</span></div>
+        <div class="game-grid" id="gameGrid"></div>
+        <div id="emptyState" class="empty hidden"><div class="empty-icon">▦</div><h3>No games found</h3><p>Try another search or add a game to your collection.</p><button class="button secondary" id="emptyAdd">＋ Add a game</button></div>
+      </section>
+
+      <section id="discoverView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">FIND SOMETHING NEW</p><h1>Discover</h1><p class="muted">Search the Steam catalogue for supported metadata and artwork.</p></div></div>
+        <div class="discover-panel"><label class="search discover-search"><span>⌕</span><input id="discoverSearch" placeholder="Search Steam games, e.g. Hades"></label><button class="button primary" id="discoverGo">Search catalogue</button></div>
+        <p class="muted small">Requires an internet connection. Search results depend on Steam's public store endpoint and may be unavailable in some browsers or networks.</p>
+        <div id="discoverResults" class="discover-results"></div>
+      </section>
+
+      <section id="downloadsView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">COLLECTION MANAGEMENT</p><h1>Downloads & imports</h1><p class="muted">Import a game list from a file. A browser cannot scan installed PC programs directly; native PC integration comes later.</p></div></div>
+        <div class="import-cards">
+          <article class="panel"><div class="panel-icon">⇧</div><h3>Import game list</h3><p>Load a JSON or CSV file containing your game collection.</p><button class="button secondary" id="importFileButton">Choose import file</button><input type="file" id="importFile" accept=".json,.csv" hidden></article>
+          <article class="panel"><div class="panel-icon">＋</div><h3>Add manually</h3><p>Add a PC game or an Android game with your own launch information.</p><button class="button secondary" id="importAdd">Add a game</button></article>
+          <article class="panel"><div class="panel-icon">↗</div><h3>Export backup</h3><p>Save your library metadata as JSON so you can move it to another device.</p><button class="button secondary" id="exportButton">Export collection</button></article>
+        </div>
+        <div class="panel info-panel"><h3>What this prototype can and cannot do</h3><ul><li>Save your collection in this browser on this device.</li><li>Search Steam's public store catalogue when the endpoint is reachable.</li><li>Import/export JSON and CSV, and customise artwork using image files.</li><li>It does not yet scan the Windows registry, detect all PC launchers, or execute installed games. That needs a trusted desktop companion or native app.</li></ul></div>
+      </section>
+
+      <section id="favouritesView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">YOUR PERSONAL PICKS</p><h1>Favourites</h1><p class="muted">The games you've marked with a heart.</p></div></div>
+        <div class="game-grid" id="favouriteGrid"></div>
+        <div id="favouriteEmpty" class="empty"><div class="empty-icon">♡</div><h3>No favourites yet</h3><p>Open a game and tap the heart to save it here.</p></div>
+      </section>
+
+      <section id="settingsView" class="view hidden">
+        <div class="page-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h1>Settings</h1><p class="muted">Prototype preferences and collection tools.</p></div></div>
+        <div class="settings-list">
+          <div class="setting"><div><strong>Accent theme</strong><p>Purple neon interface</p></div><span class="swatch"></span></div>
+          <div class="setting"><div><strong>Artwork overrides</strong><p>Replace a game's cover or featured banner from its details panel.</p></div><span class="setting-tag">Enabled</span></div>
+          <div class="setting"><div><strong>Collection storage</strong><p>Saved locally in this browser. Export a backup before clearing browser data.</p></div><span class="setting-tag">Local</span></div>
+          <div class="setting"><div><strong>Reset demo data</strong><p>Restore the sample collection on this device.</p></div><button class="button danger" id="resetButton">Reset collection</button></div>
+        </div>
+      </section>
+      <footer>Gaming Launcher Prototype · Artwork and metadata may be supplied by third-party sources.</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="game-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close icon-button" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-art" id="modalArt"></div>
+      <div class="modal-body">
+        <div class="modal-title-row"><div><p class="eyebrow" id="modalGenre">GAME DETAILS</p><h2 id="modalTitle">Game title</h2></div><button class="heart-button" id="favouriteButton" aria-label="Toggle favourite">♡</button></div>
+        <p class="muted" id="modalDescription"></p>
+        <div class="meta-chips" id="modalMeta"></div>
+        <div class="launch-box"><p class="eyebrow">AVAILABLE LAUNCH OPTIONS</p><div id="launchOptions"></div><button class="button primary full" id="launchContinue">Continue to launch option</button><p class="tiny muted" id="launchNote">This prototype shows launch options but does not execute PC games.</p></div>
+        <div class="artwork-controls"><h3>Artwork & metadata</h3><div class="art-buttons"><label class="button secondary file-button">Replace cover<input type="file" id="coverOverride" accept="image/*" hidden></label><label class="button secondary file-button">Replace banner<input type="file" id="bannerOverride" accept="image/*" hidden></label><button class="button ghost" id="restoreArtwork">Restore automatic</button></div><label class="field-label">Game description<textarea id="descriptionOverride" rows="2" placeholder="Edit game description..."></textarea></label><button class="button secondary" id="saveDescription">Save description</button></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="addBackdrop">
+    <section class="add-modal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+      <button class="modal-close icon-button" id="addClose" aria-label="Close">×</button>
+      <p class="eyebrow">EXPAND YOUR COLLECTION</p><h2 id="addTitle">Add a game</h2><p class="muted">Add a local entry now, or search Steam to retrieve supported metadata.</p>
+      <form id="addForm">
+        <label class="field-label">Game title<input id="addName" required placeholder="e.g. Hollow Knight"></label>
+        <label class="field-label">Platform<select id="addPlatform"><option>PC</option><option>Android</option></select></label>
+        <label class="field-label">Launch option / source<input id="addSource" placeholder="e.g. Steam, Epic Games, Android app"></label>
+        <label class="field-label">Store or launch URL<input id="addUrl" type="url" placeholder="https://..."></label>
+        <label class="field-label">Description<textarea id="addDescription" rows="2" placeholder="Optional game description"></textarea></label>
+        <label class="field-label">Cover image URL<input id="addCover" type="url" placeholder="Optional HTTPS image URL"></label>
+        <div class="form-actions"><button type="button" class="button ghost" id="cancelAdd">Cancel</button><button type="submit" class="button primary">Add to library</button></div>
+      </form>
+    </section>
+  </div>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
